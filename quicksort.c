@@ -9,26 +9,26 @@ void quickSort(double*, int);
 void printArr(double*);
 
 int main(int argc, char* argv[]) {
-  // initialize rng
+	// initialize rng
 	srand((int)(time(NULL)));
 
 	double time;
 	clock_t t1, t2;
-  
-  // test-array
+	
+	// test-array
 	double* arr = (double*)calloc(1, sizeof(double));
   
 	for (int i = 1; i <= 10; i++) {
 		time = 0;
-    
-    // try 50x for better average in time usage
+		
+		// try 50x for better average in time usage
 		for (int j = 0; j < 50; j++) {
 			arr = realloc(arr, (i + 1) * sizeof(double));
-      
-      // using first element of array to tell, how many elements are following...
+			
+			// using first element of array to tell, how many elements are following...
 			arr[0] = i;
-
-      // fill array with random numbers
+			
+			// fill array with random numbers
 			for (int k = 0; k < i; k++) {
 				arr[k + 1] = rand() % 100;
 			}
@@ -40,27 +40,27 @@ int main(int argc, char* argv[]) {
 			time += (double)(t2 - t1) / CLOCKS_PER_SEC;
 			
 		}
-    // print to console, how long it took on average to sort one array of length i
+		// print to console, how long it took on average to sort one array of length i
 		printf("i = %d => t = %g\n", i, time / 50.0);
 	}
-  
-  // free memory
+	
+	// free memory
 	free(arr);
 
 	return 0;
 }
 
 void quickSort(double* arr, int ascending) {
-  // check, if array size > 1
-  // if size <= 1 the array is already "sortet"
+	// check, if array size > 1
+	// if size <= 1 the array is already "sortet"
 	if (((int)*arr) > 1) {
   
 		int size1 = 0, size2 = 0;
-    
-    // pick random pivot
+		
+		// pick random pivot
 		int pivInd = rand() % (int)(*arr);
 		double pivVal = arr[pivInd + 1];
-
+		
 		// count elements bigget/smaller than pivot
 		for (int i = 1; i <= (int)*arr; i++) {
 			if (((arr[i] < pivVal) && ascending) || ((arr[i] > pivVal) && !ascending)) {
